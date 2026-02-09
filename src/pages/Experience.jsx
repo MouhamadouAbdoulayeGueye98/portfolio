@@ -4,17 +4,31 @@ function Experience() {
   const experiences = [
     {
       role: "Développeur Frontend",
-      company: "Djokkale",
-      period: "2024 - Présent",
+      company: "Volkeno (Stage)",
+      period: "Mars-2025 - Juin-2025",
       description:
-        "Développement d’interfaces modernes avec React et Tailwind CSS. Intégration d’API et amélioration de l’expérience utilisateur.",
+        "Développement d’interfaces modernes avec React, Angular, style component et Tailwind CSS. Intégration d’API et amélioration de l’expérience utilisateur.",
+    },
+    {
+      role: "Développeur Frontend",
+      company: "Djokkale",
+      period: "2025 - Présent",
+      description:
+        "Dokkale est plate-forme de mise en relation entre client et prestataire. Développement d’interfaces modernes avec React et Tailwind CSS. Intégration d’API et amélioration de l’expérience utilisateur.",
+    },
+    {
+      role: "Développeur Frontend",
+      company: "Tektal",
+      period: "Mars-2025 - Juin-2025",
+      description:
+        "TEKTAL est une application de navigation, il se distingue des applications de navigation classiques en s'adaptant spécifiquement aux besoins des utilisateurs. Travail sur la performance, le responsive design et sur l'intégration de la carte de navigation .",
     },
     {
       role: "Développeur Web",
-      company: "Projet Personnel",
-      period: "2023 - 2024",
+      company: "Nu Dem",
+      period: "Mars-2025 - Juin-2025",
       description:
-        "Création de projets web (portfolio, e-commerce). Travail sur la performance, le responsive design et le SEO.",
+        "Nu Dem est une application web de réservation de billets d’avion permettant aux utilisateurs de rechercher des vols, de réserver et de sauvegarder leurs réservations. Travail sur la performance, le responsive design et le SEO.",
     },
   ];
 

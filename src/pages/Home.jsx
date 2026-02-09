@@ -11,7 +11,7 @@ function Home() {
     >
       <div className="bg-black bg-opacity-50 p-10 rounded-lg">
         <h2 className="text-5xl font-extrabold mb-4 drop-shadow-lg">Bonjour, je suis <br /> Mouhamadou Abdoulaye Gueye</h2>
-        <p className="text-xl mb-6">Développeur Frontend | Backend</p>
+        <p className="text-xl mb-6">Développeur Frontend </p>
         <a href="#projects" className="px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-500 transition">
           Voir mes projets
         </a>
