@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -25,39 +26,45 @@ function Competences() {
     { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
   ];
 
-  return (
-    <section
-      id="competences"
-      className="py-20 bg-gray-100 text-gray-800"
-    >
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Mes Compétences
-        </h2>
+  // Variants pour chaque item
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+  // Variants pour le container (stagger = décalage entre items)
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15, // 0.15s entre chaque compétence
+      },
+    },
+  };
+
+  return (
+    <section id="competences" className="py-20 bg-gray-100 text-gray-800">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">Mes Compétences</h2>
+
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }} // déclenche quand 30% de la grille est visible
+        >
           {skills.map((skill, index) => (
-            <div
+            <motion.div
               key={index}
-              className="
-                bg-white
-                shadow-md
-                rounded-xl
-                p-6
-                flex
-                flex-col
-                items-center
-                gap-3
-                hover:scale-105
-                hover:shadow-xl
-                transition
-              "
+              className="bg-white shadow-md rounded-xl p-6 flex flex-col items-center gap-3 hover:scale-105 hover:shadow-xl transition"
+              variants={itemVariants}
             >
               <div className="text-5xl">{skill.icon}</div>
               <p className="font-medium">{skill.name}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

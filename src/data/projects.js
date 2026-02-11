@@ -2,7 +2,7 @@ const projects = [
   {
     id: 1,
     title: "Tektal",
-    description: "TEKTAL est une application de navigation.",
+    description: "TEKTAL est une application de navigation. Qui nous permet de nous situé",
     image: "/tektal.png",
     link: "https://front-tekktal.vercel.app/",
   },
