@@ -1,69 +1,114 @@
 import React from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+
+// import profileImg from ""; // 👈 mets ta photo ici
 
 function Home() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" }); // déclenche l'animation quand la section entre dans la vue
-  const controls = useAnimation();
+  const name = "Mouhamadou Abdoulaye Gueye";
+  const words = name.split(" ");
 
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.25,
+      },
+    },
   };
+
+  const wordVariant = {
+    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const colors = [
+    "text-purple-500",
+    "text-cyan-500",
+    "text-emerald-500",
+  ];
 
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col justify-center items-center text-white text-center bg-cover bg-center"
-      style={{
-        backgroundImage:
-          "url('https://static.vecteezy.com/system/resources/previews/008/612/703/non_2x/html-code-on-computer-monitor-software-web-developer-programming-code-photo.jpg')",
-      }}
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/10 px-6"
     >
-      <div
-        ref={ref}
-        className="bg-black bg-opacity-50 p-10 rounded-lg backdrop-blur-md"
-      >
-        <motion.h2
-          className="text-5xl font-extrabold mb-4 drop-shadow-lg"
-          initial="hidden"
-          animate={controls}
-          variants={variants}
-        >
-          Bonjour, je suis <br /> Mouhamadou Abdoulaye Gueye
-        </motion.h2>
+      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-12">
 
-        <motion.p
-          className="text-xl mb-6"
-          initial="hidden"
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.3 } },
-          }}
-        >
-          Développeur Frontend
-        </motion.p>
+        {/* LEFT TEXT */}
+        <div className="flex-1 text-center md:text-left">
 
-        <motion.a
-          href="#projects"
-          className="px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-500 transition shadow-lg"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, scale: 0.8 },
-            visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.6 } },
-          }}
+          {/* TITLE */}
+          <motion.h1
+            className="text-4xl md:text-6xl font-extrabold leading-tight"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            Bonjour, je suis <br />
+
+            <span className="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
+              {words.map((word, index) => (
+                <motion.span
+                  key={index}
+                  variants={wordVariant}
+                  className={`inline-block ${colors[index % colors.length]}`}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
+          </motion.h1>
+
+          {/* SUBTITLE */}
+          <motion.p
+            className="text-muted-foreground mt-6 text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            Développeur Frontend spécialisé en React & expériences web modernes
+          </motion.p>
+
+          {/* BUTTON */}
+          <motion.a
+            href="#projects"
+            className="inline-block mt-8 px-6 py-3 rounded-xl bg-primary text-white hover:bg-purple-800 transition"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.5 }}
+          >
+            Voir mes projets
+          </motion.a>
+
+        </div>
+
+        {/* RIGHT IMAGE */}
+        <motion.div
+          className="flex-1 flex justify-center"
+          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
         >
-          Voir mes projets
-        </motion.a>
+          <div className="relative">
+
+            {/* Glow background */}
+            <div className="absolute inset-0 bg-purple-400 blur-3xl rounded-full scale-110" />
+
+            {/* IMAGE */}
+            <img
+              src="/profil1.jpeg"
+              alt="Profile"
+              className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl border border-border shadow-2xl hover:scale-105 transition duration-500"
+            />
+
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

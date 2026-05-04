@@ -1,20 +1,49 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  FaHome,
+  FaUser,
+  FaCode,
+  FaBriefcase,
+  FaProjectDiagram,
+  FaEnvelope,
+} from "react-icons/fa";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
+
+  const navItems = [
+    { id: "home", href: "#home", icon: <FaHome /> },
+    { id: "about", href: "#about", icon: <FaUser /> },
+    { id: "competences", href: "#competences", icon: <FaCode /> },
+    { id: "experience", href: "#experience", icon: <FaBriefcase /> },
+    { id: "projects", href: "#projects", icon: <FaProjectDiagram /> },
+    { id: "contact", href: "#contact", icon: <FaEnvelope /> },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        // scroll vers le bas
-        setShowNavbar(false);
-      } else {
-        // scroll vers le haut
-        setShowNavbar(true);
+      const currentScrollY = window.scrollY;
+
+      // Hide / show navbar
+      if (Math.abs(currentScrollY - lastScrollY) > 10) {
+        setShowNavbar(currentScrollY < lastScrollY);
+        setLastScrollY(currentScrollY);
       }
-      setLastScrollY(window.scrollY);
+
+      // Detect active section
+      navItems.forEach((item) => {
+        const section = document.getElementById(item.id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveSection(item.id);
+          }
+        }
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -22,43 +51,36 @@ function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 bg-white shadow-md transition-transform duration-300
-      ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}
+    <motion.nav
+      initial={{ y: 0 }}
+      animate={{ y: showNavbar ? 0 : -100 }}
+      transition={{ duration: 0.3 }}
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
     >
-      <div className="flex justify-between items-center py-4 px-6">
-        <h1 className="text-2xl font-bold text-blue-600 cursor-pointer">
-          MonPortfolio
-        </h1>
+      <div className="flex items-center gap-5 px-6 py-3 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
 
-        <div className="hidden md:flex space-x-6 font-medium text-gray-700">
-          <a href="#home" className="hover:text-blue-600">Home</a>
-          <a href="#about" className="hover:text-blue-600">About</a>
-          <a href="#competences" className="hover:text-blue-600">Compétences</a>
-          <a href="#experience" className="hover:text-blue-600">Experiences</a>
-          <a href="#projects" className="hover:text-blue-600">Projects</a>
-          <a href="#contact" className="hover:text-blue-600">Contact</a>
-        </div>
+        {navItems.map((item, index) => {
+          const isActive = activeSection === item.id;
 
-        <button
-          className="md:hidden text-3xl text-blue-600"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          ☰
-        </button>
+          return (
+            <motion.a
+              key={index}
+              href={item.href}
+              whileHover={{ scale: 1.2, y: -2 }}
+              whileTap={{ scale: 0.9 }}
+              className={`text-xl transition ${
+                isActive
+                  ? "text-purple-400 drop-shadow-lg"
+                  : "text-white hover:text-purple-300"
+              }`}
+            >
+              {item.icon}
+            </motion.a>
+          );
+        })}
+
       </div>
-
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-center bg-white shadow-md pb-4 space-y-4 font-medium text-gray-700">
-          <a href="#home" onClick={() => setIsOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setIsOpen(false)}>About</a>
-          <a href="#competences" onClick={() => setIsOpen(false)}>Compétences</a>
-          <a href="#experience" onClick={() => setIsOpen(false)}>Experience</a>
-          <a href="#projects" onClick={() => setIsOpen(false)}>Projects</a>
-          <a href="#contact" onClick={() => setIsOpen(false)}>Contact</a>
-        </div>
-      )}
-    </nav>
+    </motion.nav>
   );
 }
 

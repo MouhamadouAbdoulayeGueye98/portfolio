@@ -2,69 +2,78 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   FaHtml5,
-  FaCss3Alt,
   FaJs,
   FaReact,
   FaGitAlt,
   FaNodeJs,
   FaBootstrap,
   FaAngular,
+  FaCss3Alt,
 } from "react-icons/fa";
 import { SiTailwindcss, SiStyledcomponents, SiNextdotjs } from "react-icons/si";
 
 function Competences() {
   const skills = [
-    { name: "HTML", icon: <FaHtml5 className="text-orange-600" /> },
-    { name: "CSS / Tailwind", icon: <SiTailwindcss className="text-sky-500" /> },
-    { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
-    { name: "React", icon: <FaReact className="text-cyan-500" /> },
-    { name: "Git / GitHub", icon: <FaGitAlt className="text-red-500" /> },
-    { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-    { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
-    { name: "Angular", icon: <FaAngular className="text-red-600" /> },
-    { name: "Styled Components", icon: <SiStyledcomponents className="text-pink-500" /> },
-    { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
+    { name: "HTML 5", icon: <FaHtml5 className="text-orange-600 text-4xl" /> },
+    { name: "CSS", icon: <FaCss3Alt className="text-blue-600 text-4xl" /> },
+    { name: "Tailwind", icon: <SiTailwindcss className="text-sky-500 text-4xl" /> },
+    { name: "JavaScript", icon: <FaJs className="text-yellow-400 text-4xl" /> },
+    { name: "React", icon: <FaReact className="text-cyan-500 text-4xl" /> },
+    { name: "Git", icon: <FaGitAlt className="text-red-500 text-4xl" /> },
+    { name: "Node.js", icon: <FaNodeJs className="text-green-600 text-4xl" /> },
+    { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600 text-4xl" /> },
+    { name: "Angular", icon: <FaAngular className="text-red-600 text-4xl" /> },
+    { name: "Style components", icon: <SiStyledcomponents className="text-pink-500 text-4xl" /> },
+    { name: "Next.js", icon: <SiNextdotjs className="text-white text-4xl" /> },
   ];
 
-  // Variants pour chaque item
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  // Variants pour le container (stagger = décalage entre items)
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15, // 0.15s entre chaque compétence
-      },
-    },
-  };
+  // duplication pour boucle infinie fluide
+  const loopedSkills = [...skills, ...skills];
 
   return (
-    <section id="competences" className="py-20 bg-gray-100 text-gray-800">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Mes Compétences</h2>
+    <section
+      id="competences"
+      className="py-28 bg-gradient-to-br from-background via-background to-purple-500 overflow-hidden"
+    >
+      <div className="text-center mb-20">
+        <h2 className="text-4xl md:text-5xl font-bold">
+          Mes{" "}
+          <span className="text-purple-500">Compétences</span>
+        </h2>
+      </div>
+
+      {/* MARQUEE */}
+      <div className="relative w-full overflow-hidden">
 
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }} // déclenche quand 30% de la grille est visible
+          className="flex gap-12 w-max"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            duration: 20,
+            ease: "linear",
+            repeat: Infinity,
+          }}
         >
-          {skills.map((skill, index) => (
-            <motion.div
+          {loopedSkills.map((skill, index) => (
+            <div
               key={index}
-              className="bg-white shadow-md rounded-xl p-6 flex flex-col items-center gap-3 hover:scale-105 hover:shadow-xl transition"
-              variants={itemVariants}
+              className="flex flex-col items-center justify-center gap-3 min-w-[120px]"
             >
-              <div className="text-5xl">{skill.icon}</div>
-              <p className="font-medium">{skill.name}</p>
-            </motion.div>
+
+              {/* ICON CARD */}
+              <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-background/70 border border-border backdrop-blur-md shadow-md hover:scale-110 transition">
+                {skill.icon}
+              </div>
+
+              {/* NAME */}
+              <p className="text-sm text-muted-foreground">
+                {skill.name}
+              </p>
+
+            </div>
           ))}
         </motion.div>
+
       </div>
     </section>
   );
