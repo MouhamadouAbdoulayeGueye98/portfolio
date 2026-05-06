@@ -1,24 +1,39 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 function About() {
   return (
     <section
       id="about"
-      className="py-20 bg-cover bg-center text-white"
-      // style={{
-      //   backgroundImage: "url('https://cdn.pixabay.com/photo/2020/10/21/18/07/laptop-5673901_1280.jpg')"
-      // }}
+      className="flex justify-center items-center py-24 px-4 text-white"
     >
-      <div className="max-w-3xl mx-auto text-center p-10 rounded-lg">
-        <h2 className="text-4xl font-bold mb-6 text-purple-500">À propos de moi</h2>
-        <p className="leading-relaxed">
-          Développeur web passionné, je crée des interfaces modernes et performantes en alliant créativité et expertise technique. Je maîtrise un large éventail de technologies front-end , notamment React, Angular, HTML, CSS, JavaScript, Bootstrap Style Components et aussi un peu de backend avec Node.JS Next.JS. J’aime transformer des idées en projets concrets, concevoir des expériences utilisateur intuitives et optimiser chaque détail pour des applications web fluides et performantes.
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-3xl w-full p-10 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg"
+      >
+        {/* Title */}
+        <h2 className="text-4xl font-bold mb-6 text-purple-400 text-center">
+          À propos de moi
+        </h2>
+
+        {/* Content */}
+        <p className="leading-relaxed text-white/80 text-center">
+          Développeur web passionné, je crée des interfaces modernes et
+          performantes en alliant créativité et expertise technique.
+          <br /><br />
+          Je maîtrise un large éventail de technologies front-end, notamment
+          React, Angular, HTML, CSS, JavaScript, Bootstrap et Styled Components.
+          J’ai également des bases solides en backend avec Node.js et Next.js.
+          <br /><br />
+          J’aime transformer des idées en projets concrets, concevoir des
+          expériences utilisateur intuitives et optimiser chaque détail pour des
+          applications web fluides et performantes.
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }
-
-
 
 export default About;

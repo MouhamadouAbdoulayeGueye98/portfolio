@@ -38,7 +38,7 @@ function Competences() {
       <div className="text-center mb-20">
         <h2 className="text-4xl md:text-5xl font-bold">
           Mes{" "}
-          <span className="text-purple-500">Compétences</span>
+          <span className="text-purple-400">Compétences</span>
         </h2>
       </div>
 
@@ -49,7 +49,7 @@ function Competences() {
           className="flex gap-12 w-max"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 20,
+            duration: 30,
             ease: "linear",
             repeat: Infinity,
           }}

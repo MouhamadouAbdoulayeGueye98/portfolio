@@ -29,7 +29,7 @@ function Projects() {
         {/* Title */}
         <h2 className="text-4xl text-center mb-20 md:text-5xl font-bold">
           Mes{" "}
-          <span className="text-purple-500">Projets</span>
+          <span className="text-purple-400">Projets</span>
         </h2>
 
         {/* Grid */}

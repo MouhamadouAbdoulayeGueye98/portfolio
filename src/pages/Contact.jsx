@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
+import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function Contact() {
   const form = useRef();
@@ -33,8 +35,8 @@ function Contact() {
       {/* Toast container */}
       <Toaster position="top-right" reverseOrder={false} />
 
-      <h2 className="text-4xl font-bold text-center mb-12 text-purple-500">
-        Contactez-moi
+      <h2 className="text-4xl text-center mb-20 md:text-5xl font-bold">
+        <span className="text-purple-400">Contactez-</span>Moi
       </h2>
 
       <div className="max-w-5xl text-black mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4">
@@ -70,7 +72,34 @@ function Contact() {
             <h4 className="font-medium mb-3 sm:mb-4 text-xs text-white text-center sm:text-sm text-muted-foreground">
               Retrouvez-moi sur
             </h4>
-            <div className="flex gap-2 sm:gap-3"></div>
+            <div className="flex items-center justify-center gap-6 text-xl">
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-white hover:text-purple-300 transition"
+              >
+                <FaTwitter />
+              </motion.a>
+
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-white hover:text-purple-300 transition"
+              >
+                <FaLinkedin />
+              </motion.a>
+
+              <motion.a
+                href="#"
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                className="text-white hover:text-purple-300 transition"
+              >
+                <FaGithub />
+              </motion.a>
+            </div>
           </div>
         </div>
 

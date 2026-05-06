@@ -4,6 +4,8 @@ import Competences from "./Competences";
 import Experience from "./Experience";
 import Projects from "./Projects";
 import Contact from "./Contact";
+import SoftSkills from "./SoftSkills";
+import Services from "./Services";
 
 function HomePage() {
   return (
@@ -12,6 +14,8 @@ function HomePage() {
       <About />
       <Competences />
       <Experience />
+      <SoftSkills />
+      <Services />
       <Projects />
       <Contact />
     </>

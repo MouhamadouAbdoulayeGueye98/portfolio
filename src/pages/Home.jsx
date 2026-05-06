@@ -1,36 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-// import profileImg from ""; // 👈 mets ta photo ici
-
 function Home() {
+  const [isName, setIsName] = useState(true);
+
   const name = "Mouhamadou Abdoulaye Gueye";
   const words = name.split(" ");
 
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.25,
-      },
-    },
-  };
+  const colors = ["text-purple-500", "text-cyan-500", "text-emerald-500"];
 
-  const wordVariant = {
-    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
+  // 🔁 BOUCLE INFINIE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsName((prev) => !prev);
+    }, 3000);
 
-  const colors = [
-    "text-purple-500",
-    "text-cyan-500",
-    "text-emerald-500",
-  ];
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -43,48 +29,55 @@ function Home() {
         <div className="flex-1 text-center md:text-left">
 
           {/* TITLE */}
-          <motion.h1
-            className="text-4xl md:text-6xl font-extrabold leading-tight"
-            variants={container}
-            initial="hidden"
-            animate="visible"
-          >
+          <motion.h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
             Bonjour, je suis <br />
 
-            <span className="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
-              {words.map((word, index) => (
-                <motion.span
-                  key={index}
-                  variants={wordVariant}
-                  className={`inline-block ${colors[index % colors.length]}`}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </span>
+            <motion.div
+              key={isName ? "name" : "title"}
+              initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mt-4"
+            >
+              {isName ? (
+                <span className="flex flex-wrap justify-center md:justify-start gap-3">
+                  {words.map((word, index) => (
+                    <span
+                      key={index}
+                      className={`inline-block ${colors[index % colors.length]}`}
+                    >
+                      {word}
+                    </span>
+                  ))}
+                </span>
+              ) : (
+                <span className="text-purple-500">
+                  Développeur Frontend
+                </span>
+              )}
+            </motion.div>
           </motion.h1>
 
           {/* SUBTITLE */}
-          <motion.p
+          {/* <motion.p
             className="text-muted-foreground mt-6 text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 1 }}
           >
             Développeur Frontend spécialisé en React & expériences web modernes
-          </motion.p>
+          </motion.p> */}
 
           {/* BUTTON */}
           <motion.a
             href="#projects"
-            className="inline-block mt-8 px-6 py-3 rounded-xl bg-primary text-white hover:bg-purple-800 transition"
+            className="inline-block mt-8 px-6 py-3 rounded-xl bg-purple-500 text-white hover:bg-purple-800 transition"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.5 }}
+            transition={{ delay: 1.3 }}
           >
             Voir mes projets
           </motion.a>
-
         </div>
 
         {/* RIGHT IMAGE */}
@@ -105,7 +98,6 @@ function Home() {
               alt="Profile"
               className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl border border-border shadow-2xl hover:scale-105 transition duration-500"
             />
-
           </div>
         </motion.div>
 

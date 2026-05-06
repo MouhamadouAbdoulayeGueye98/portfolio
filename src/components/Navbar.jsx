@@ -7,6 +7,7 @@ import {
   FaBriefcase,
   FaProjectDiagram,
   FaEnvelope,
+  FaRocket,
 } from "react-icons/fa";
 
 function Navbar() {
@@ -15,25 +16,23 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
-    { id: "home", href: "#home", icon: <FaHome /> },
-    { id: "about", href: "#about", icon: <FaUser /> },
-    { id: "competences", href: "#competences", icon: <FaCode /> },
-    { id: "experience", href: "#experience", icon: <FaBriefcase /> },
-    { id: "projects", href: "#projects", icon: <FaProjectDiagram /> },
-    { id: "contact", href: "#contact", icon: <FaEnvelope /> },
+    { id: "home", href: "#home", icon: <FaHome />, label: "Accueil" },
+    { id: "about", href: "#about", icon: <FaUser />, label: "A Propos" },
+    { id: "experience", href: "#experience", icon: <FaBriefcase />, label: "Exp" },
+    { id: "services", href: "#services", icon: <FaRocket />, label: "Services" },
+    { id: "projects", href: "#projects", icon: <FaProjectDiagram />, label: "Projets" },
+    { id: "contact", href: "#contact", icon: <FaEnvelope />, label: "Contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Hide / show navbar
       if (Math.abs(currentScrollY - lastScrollY) > 10) {
         setShowNavbar(currentScrollY < lastScrollY);
         setLastScrollY(currentScrollY);
       }
 
-      // Detect active section
       navItems.forEach((item) => {
         const section = document.getElementById(item.id);
         if (section) {
@@ -53,32 +52,53 @@ function Navbar() {
   return (
     <motion.nav
       initial={{ y: 0 }}
-      animate={{ y: showNavbar ? 0 : -100 }}
+      animate={{ y: showNavbar ? 0 : -120 }}
       transition={{ duration: 0.3 }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
+      className="fixed top-0 left-0 w-full z-50"
     >
-      <div className="flex items-center gap-5 px-6 py-3 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
+      <div className="w-full px-4 md:px-10 py-3 backdrop-blur-md bg-white/10 border-b border-white/10 shadow-lg">
 
-        {navItems.map((item, index) => {
-          const isActive = activeSection === item.id;
+        {/* CONTAINER */}
+        <div className="flex items-center justify-between">
 
-          return (
-            <motion.a
-              key={index}
-              href={item.href}
-              whileHover={{ scale: 1.2, y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className={`text-xl transition ${
-                isActive
-                  ? "text-purple-400 drop-shadow-lg"
-                  : "text-white hover:text-purple-300"
-              }`}
-            >
-              {item.icon}
-            </motion.a>
-          );
-        })}
+          {/* LOGO*/}
+          <div className="text-white italic font-bold text-lg hidden md:block" style={{fontFamily: "'Lobster', cursive"}}>
+            M.A.G
+          </div>
 
+          {/* NAV ITEMS */}
+          <div className="flex items-center justify-between w-full md:w-auto md:gap-6">
+
+            {navItems.map((item, index) => {
+              const isActive = activeSection === item.id;
+
+              return (
+                <motion.a
+                  key={index}
+                  href={item.href}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex flex-col items-center text-sm md:text-base transition ${
+                    isActive
+                      ? "text-purple-400"
+                      : "text-white/70 hover:text-purple-300"
+                  }`}
+                >
+                  <div className="text-lg md:text-xl">
+                    {item.icon}
+                  </div>
+
+                  {/* LABEL (visible desktop uniquement) */}
+                  <span className="hidden md:block text-xs mt-1">
+                    {item.label}
+                  </span>
+                </motion.a>
+              );
+            })}
+
+          </div>
+
+        </div>
       </div>
     </motion.nav>
   );
