@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
-import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 function Contact() {
@@ -41,7 +42,7 @@ function Contact() {
 
       <div className="max-w-5xl text-black mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-4">
         {/* Infos de contact */}
-        <div className="space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-background border border-border">
+        <div className="space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-secondary/20 to-background border border-white">
           <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center gap-2 text-white">
             <span className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-purple-500"></span>
             Mes Coordonnées
@@ -79,7 +80,7 @@ function Contact() {
                 whileTap={{ scale: 0.9 }}
                 className="text-white hover:text-purple-300 transition"
               >
-                <FaTwitter />
+                <FaXTwitter />
               </motion.a>
 
               <motion.a
@@ -107,7 +108,7 @@ function Contact() {
         <form
           ref={form}
           onSubmit={sendEmail}
-          className="bg-gray-900 p-8 rounded-xl border border-border shadow-lg flex flex-col gap-4"
+          className="bg-gray-900 p-8 rounded-xl border border-white shadow-lg flex flex-col gap-4"
         >
           <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center gap-2 text-white">
             <span className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-purple-500"></span>
@@ -117,14 +118,14 @@ function Contact() {
             type="text"
             name="name"
             placeholder="Nom"
-            className="w-full bg-transparent px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all text-sm sm:text-base"
+            className="w-full px-3 sm:px-4 py-2 text-white sm:py-3 rounded-lg sm:rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent transition-all text-sm sm:text-base"
             required
           />
           <input
             type="email"
             name="email"
             placeholder="Email"
-            className="w-full bg-transparent px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all text-sm sm:text-base"
+            className="w-full px-3 sm:px-4 py-2 text-white sm:py-3 rounded-lg sm:rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent transition-all text-sm sm:text-base"
             required
           />
           <textarea

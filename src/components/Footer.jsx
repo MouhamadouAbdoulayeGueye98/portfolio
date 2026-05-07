@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
   return (
@@ -19,7 +20,7 @@ function Footer() {
             whileTap={{ scale: 0.9 }}
             className="text-white hover:text-purple-300 transition"
           >
-            <FaTwitter />
+            <FaXTwitter />
           </motion.a>
 
           <motion.a

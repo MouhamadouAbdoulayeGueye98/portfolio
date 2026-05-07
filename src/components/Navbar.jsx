@@ -57,18 +57,19 @@ function Navbar() {
       className="fixed top-0 left-0 w-full z-50"
     >
       <div className="w-full px-4 md:px-10 py-3 backdrop-blur-md bg-white/10 border-b border-white/10 shadow-lg">
-
         {/* CONTAINER */}
         <div className="flex items-center justify-between">
-
           {/* LOGO*/}
-          <div className="text-white italic font-bold text-lg hidden md:block" style={{fontFamily: "'Lobster', cursive"}}>
-            M.A.G
+          <div className="hidden md:block">
+            <img
+              src="/logo.png"
+              alt="M.A.G"
+              className="h-8 w-auto italic"
+            />
           </div>
 
           {/* NAV ITEMS */}
           <div className="flex items-center justify-between w-full md:w-auto md:gap-6">
-
             {navItems.map((item, index) => {
               const isActive = activeSection === item.id;
 
@@ -84,9 +85,7 @@ function Navbar() {
                       : "text-white/70 hover:text-purple-300"
                   }`}
                 >
-                  <div className="text-lg md:text-xl">
-                    {item.icon}
-                  </div>
+                  <div className="text-lg md:text-xl">{item.icon}</div>
 
                   {/* LABEL (visible desktop uniquement) */}
                   <span className="hidden md:block text-xs mt-1">
@@ -95,9 +94,7 @@ function Navbar() {
                 </motion.a>
               );
             })}
-
           </div>
-
         </div>
       </div>
     </motion.nav>
