@@ -5,6 +5,7 @@ const projects = [
     description: "TEKTAL est une application de navigation. Qui nous permet de nous situé",
     image: "/tektal.png",
     link: "https://front-tekktal.vercel.app/",
+    technologies: ["Angular", "Tailwind", "Node.JS"]
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const projects = [
     description: "Application de mise en relation entre client et prestataire.",
     image: "/djokkale.png",
     link: "https://www.djokkale.com/400x200",
+    technologies: ["React", "Tailwind", "Node.JS"]
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const projects = [
     description: "Nu Dem est une application web de réservation de billets d’avion.",
     image: "/Nudem.png",
     link: "https://nioudemvoyage.netlify.app/",
+    technologies: ["React", "Tailwind"]
   },
   
 ];
