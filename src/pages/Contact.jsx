@@ -12,6 +12,16 @@ function Contact() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+      const email = form.current.email.value;
+
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRegex.test(email)) {
+        toast.error("Veuillez entrer une adresse email valide.");
+        return;
+      }
+
     emailjs
       .sendForm(
         "service_6a6m8nf",  
@@ -118,6 +128,8 @@ function Contact() {
             type="text"
             name="name"
             placeholder="Nom"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Veuillez entrer une adresse email valide"
             className="w-full px-3 sm:px-4 py-2 text-white sm:py-3 rounded-lg sm:rounded-xl border border-input bg-background focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent transition-all text-sm sm:text-base"
             required
           />

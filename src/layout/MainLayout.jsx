@@ -128,14 +128,14 @@ function MainLayout({ children }) {
             animationDelay: shape.delay + "s",
 
             // ✅ BORDER visible
-            border: `${shape.borderWidth}px solid rgb(255, 255, 255)`,
+            border: `${shape.borderWidth}px solid rgb(131, 2, 251)`,
 
             background: "transparent",
 
             // ✨ glow plus fort (important pour fond noir)
             boxShadow: `
               0 0 20px rgba(130, 2, 251, 0.98),
-              0 0 50px rgb(255, 255, 255)
+              0 0 50px rgba(130, 2, 251, 0.98)
             `,
 
             mixBlendMode: "screen",
