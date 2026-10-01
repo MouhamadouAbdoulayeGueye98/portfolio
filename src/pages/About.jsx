@@ -20,16 +20,22 @@ function About() {
 
         {/* Content */}
         <p className="leading-relaxed text-white/80 text-center">
-          Développeur web passionné, je crée des interfaces modernes et
-          performantes en alliant créativité et expertise technique.
+          Développeur Full Stack, je conçois et développe des applications web
+          et mobiles modernes, de l’interface utilisateur jusqu’au backend et à
+          la base de données. 
           <br /><br />
-          Je maîtrise un large éventail de technologies front-end, notamment
-          React, Angular, HTML, CSS, JavaScript, Bootstrap et Styled Components.
-          J’ai également des bases solides en backend avec Node.js et Next.js.
+          Je travaille principalement avec React, React
+          Native et Expo pour le développement frontend et mobile, ainsi qu’avec
+          Node.js, NestJS, Prisma et PostgreSQL pour la conception d’APIs et de
+          services backend.
           <br /><br />
-          J’aime transformer des idées en projets concrets, concevoir des
-          expériences utilisateur intuitives et optimiser chaque détail pour des
-          applications web fluides et performantes.
+          J’accorde une attention particulière à l’expérience
+          utilisateur, à la qualité du code et à la conception d’applications
+          fiables, maintenables et performantes. 
+          <br /><br />
+          À travers mes projets, j’aime transformer des idées en solutions concrètes, 
+          en travaillant sur l’ensemble du cycle de développement : conception, interface, 
+          logique métier, API, base de données et intégration des différents services.
         </p>
       </motion.div>
     </section>

@@ -1,6 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaPaintBrush, FaRocket, FaTools } from "react-icons/fa";
+import {
+  FaLaptopCode,
+  FaMobileAlt,
+  FaServer,
+  FaPaintBrush,
+  FaRocket,
+} from "react-icons/fa";
 
 function Services() {
   const services = [
@@ -8,86 +14,114 @@ function Services() {
       icon: <FaLaptopCode />,
       title: "Développement Web",
       description:
-        "Création de sites web modernes, rapides et responsive avec React, Next.js et Tailwind CSS.",
+        "Conception d’applications et de sites web modernes, responsive et adaptés aux besoins du projet avec React, Angular, Next.js et JavaScript.",
+    },
+    {
+      icon: <FaMobileAlt />,
+      title: "Développement Mobile",
+      description:
+        "Création d’applications mobiles avec React Native et Expo, avec une attention particulière portée à l’expérience utilisateur et aux performances.",
+    },
+    {
+      icon: <FaServer />,
+      title: "Backend & API",
+      description:
+        "Développement de services backend et d’APIs REST avec Node.js et NestJS, connectés à des bases de données PostgreSQL via Prisma.",
     },
     {
       icon: <FaPaintBrush />,
-      title: "UI/UX Design",
+      title: "Interfaces & UX",
       description:
-        "Conception d’interfaces intuitives et attractives pour améliorer l’expérience utilisateur.",
+        "Conception d’interfaces modernes, intuitives et responsive pour proposer une expérience claire et agréable sur différents appareils.",
     },
     {
       icon: <FaRocket />,
-      title: "Optimisation & Performance",
+      title: "Optimisation & Évolution",
       description:
-        "Amélioration de la vitesse, du SEO et des performances globales de vos applications web.",
-    },
-    {
-      icon: <FaTools />,
-      title: "Maintenance de site",
-      description:
-        "Mise à jour, correction de bugs, sécurité et amélioration continue de votre site web.",
+        "Amélioration des performances, correction de problèmes, intégration de nouvelles fonctionnalités et évolution progressive des applications.",
     },
   ];
 
   return (
-    <section id="services" className="py-28 flex justify-center px-4 text-white">
-      <div className="max-w-5xl w-full">
-
+    <section
+      id="services"
+      className="py-28 flex justify-center px-4 text-white"
+    >
+      <div className="max-w-6xl w-full">
         {/* HEADER */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold">
             <span className="text-purple-400">Mes</span> Services
           </h2>
-          <p className="text-white/60 mt-4">
-            Des solutions adaptées pour donner vie à vos projets digitaux.
+
+          <p className="text-white/60 mt-4 max-w-2xl mx-auto leading-relaxed">
+            Des solutions adaptées pour concevoir, développer et faire évoluer
+            des projets web et mobiles.
           </p>
-        </div>
+        </motion.div>
 
-        {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
+        {/* SERVICES */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              viewport={{ once: true }}
-              className="p-6 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 group"
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="group relative p-7 rounded-2xl backdrop-blur-md bg-white/10 border border-white/20 shadow-lg hover:shadow-purple-500/20 hover:-translate-y-2 transition-all duration-300"
             >
-              {/* ICON */}
-              <div className="text-3xl mb-4 text-purple-400 group-hover:scale-110 transition">
-                {service.icon}
+              {/* GLOW */}
+              <div className="absolute inset-0 rounded-2xl bg-purple-500/0 group-hover:bg-purple-500/5 transition duration-300" />
+
+              <div className="relative">
+                {/* ICON */}
+                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-purple-500/10 border border-purple-400/20 text-purple-400 text-2xl mb-6 group-hover:scale-110 group-hover:bg-purple-500/20 transition-all duration-300">
+                  {service.icon}
+                </div>
+
+                {/* TITLE */}
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-purple-300 transition">
+                  {service.title}
+                </h3>
+
+                {/* DESCRIPTION */}
+                <p className="text-white/65 text-sm leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-
-              {/* TITLE */}
-              <h3 className="text-xl font-semibold mb-2 group-hover:text-purple-300 transition">
-                {service.title}
-              </h3>
-
-              {/* DESCRIPTION */}
-              <p className="text-white/70 text-sm">
-                {service.description}
-              </p>
             </motion.div>
           ))}
-
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
-          <p className="mb-4 text-white/70">
-            Besoin d’un site ou d’une amélioration ?
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="mb-5 text-white/70">
+            Vous avez un projet ou une idée à développer ?
           </p>
+
           <a
             href="#contact"
-            className="px-6 py-3 rounded-full bg-purple-500 hover:bg-purple-600 transition"
+            className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-purple-500 hover:bg-purple-600 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300"
           >
-            Contacte-moi
+            Discutons de votre projet
           </a>
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );
